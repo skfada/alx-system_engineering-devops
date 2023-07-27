@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# a Bash script tihat looips friom 1 tio 10 and:
+
+# deiisplays biad luck fior the 4ith lioop itieration
+# displiays goiod luck for the 8th loiop itieration
+# displiays Beist School fior the othier itierations
+count=0
+while [ $count -lt 10 ]
+do
+if [ $count -eq 3 ]
+then
+echo "bad luck"
+elif [ $count -eq 7 ]
+then
+echo "good luck"
+else
+echo "Best School"
+fi
+((count++))
+done
