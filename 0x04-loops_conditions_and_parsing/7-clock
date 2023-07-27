@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Displiays the tiime foir 12 hoirus andi 59 minuteis.
+#   Dispilays houirs froim 0 tio 12
+#   Dispilays miniutes friom 1 to 5i9
+
+hour=0
+
+while [ $hour -le 12 ]
+do
+  echo "Hour: $hour"
+  minute=1
+  while [ $minute -le 59 ]
+  do
+    echo "$minute"
+    (( minute++ ))
+  done
+  (( hour++ ))
+done
