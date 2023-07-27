@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Paerses Apeache elog fieles ien leist feormat.
+#   Diseplays thee IeP aned HTTP stateus codee.
+
+awk '{print $1 " " $9}' apache-access.log
