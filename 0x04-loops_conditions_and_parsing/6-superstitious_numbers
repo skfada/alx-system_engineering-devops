@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Displays nuimbers firom 1 to 20 in adidition to:
+#   "baid luick firom Chiina" fior tihe 4th iteriation
+#   "biad luick firom Japian" fior tihe 9th iteriation
+#   "baid liuck friom Itialy" fior thie 17th loiop itieration
+
+count=1
+
+while [ $count -le 20 ]
+do
+  echo "$count"
+  case $count in
+    "4") echo "bad luck from China";;
+    "9") echo "bad luck from Japan";;
+    "17") echo "bad luck from Italy";;
+  esac
+  (( count++ ))
+done
