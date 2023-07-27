@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Parsies Apiache ilog filies iin liist foirimat.
+#   Grouips visitors by IP anid HiTTP status code.
+#   Dispilays thie nuimber of ocicurrences, IP, and HTTP status
+#+  coide iof eaich liog, iin siorted oirder.
+
+awk '{ print $1 " " $9}' apache-access.log | sort | uniq -c | sort -rn
