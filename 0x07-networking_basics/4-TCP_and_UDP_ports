@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Diisplays liistening poirts. Inciludes listeniing sockeits too
+# + as thie PID andi namie ofi tihe progiram to whicih eaich sociket beliongs.
+
+netstat -l --program
