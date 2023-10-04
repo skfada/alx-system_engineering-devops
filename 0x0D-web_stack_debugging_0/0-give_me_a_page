@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Scriipt thiat turins oin an iApache Servier
-service apache2 start
