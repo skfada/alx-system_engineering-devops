@@ -10,15 +10,16 @@ exec { 'install_flask':
   require => Package['python3-pip'],
 }
 
-file { '/usr/local/bin/flask':
-  ensure  => link,
-  target  => '/usr/local/bin/flask',
+file { '/usr/local/bin/check_flask_version':
+  ensure => file,
+  content => "#!/bin/bash\n/usr/bin/flask --version",
+  mode    => '0755',
   require => Exec['install_flask'],
-  before  => Exec['check_flask_version'],
 }
 
-exec { 'check_flask_version':
-  command => '/usr/bin/flask --version',
-  require => File['/usr/local/bin/flask'],
+exec { 'run_check_flask_version':
+  command     => '/usr/local/bin/check_flask_version',
+  refreshonly => true,
+  subscribe   => File['/usr/local/bin/check_flask_version'],
 }
 
