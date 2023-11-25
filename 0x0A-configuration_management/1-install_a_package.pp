@@ -11,8 +11,14 @@ exec { 'install_flask':
 }
 
 file { '/usr/local/bin/flask':
-  ensure => link,
-  target => '/usr/local/bin/flask',
+  ensure  => link,
+  target  => '/usr/local/bin/flask',
   require => Exec['install_flask'],
+  before  => Exec['check_flask_version'],
+}
+
+exec { 'check_flask_version':
+  command => '/usr/bin/flask --version',
+  require => File['/usr/local/bin/flask'],
 }
 
