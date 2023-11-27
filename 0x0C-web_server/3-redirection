@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# this script configures and redirects a new Ubuntu machine
+
+# installing nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# configure nginx to redirect to another page
+sudo bash -c 'cat > /etc/nginx/sites-available/redirect_me <<EOF
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://github.com/skfada;
+    }
+
+    # Disable default Nginx page
+    location / {
+        return 404;
+    }
+}
+EOF'
+
+# Enable the site by creating a symbolic link
+sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Restart Nginx to apply changes
+sudo systemctl reload nginx
+
+exit 0
