@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# this script installs Nginx to my server 54.90.50.81
+
+apt-get update
+apt-get install -y nginx
+
+# configure nginx to server 'Hello World!'
+echo "Hello World!" > /var/www/html/index.html
+
+# restarting nginx without systemctl to apply changes
+kill -s HUP "$(cat /var/run/nginx.pid)"
+
+exit 0
