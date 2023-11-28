@@ -8,6 +8,4 @@ apt-get install -y nginx
 echo "Hello World!" > /var/www/html/index.html
 
 # restarting nginx without systemctl to apply changes
-kill -s HUP "$(cat /var/run/nginx.pid)"
-
-exit 0
+service nginx restart
