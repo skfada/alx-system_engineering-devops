@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# this script  initialize server apache
+# this script initializes the Apache server
 
 container_id=$(docker run -d -p 8080:80 holbertonschool/265-0)
 
@@ -20,6 +20,13 @@ if [ -n "$container_id" ]; then
 
         # Restart Apache to apply changes
         service apache2 restart
+
+        # Check Apache service status
+        if service apache2 status | grep -q "apache2 is running"; then
+            echo "apache2 is running"
+        else
+            echo "apache2 is not running"
+        fi
     '
 
     echo "Setup completed. Access the page using: curl 0:8080"
