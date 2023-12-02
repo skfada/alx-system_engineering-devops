@@ -1,5 +1,5 @@
-#!/bin/env bash
-# Run the Docker container with Apache
+#!/usr/bin/env bash
+# this script  initialize server apache
 
 container_id=$(docker run -d -p 8080:80 holbertonschool/265-0)
 
