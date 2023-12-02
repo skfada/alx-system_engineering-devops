@@ -1,3 +1,28 @@
-#!/usr/bin/env bash
-# this script  initialize server apache
-/etc/init.d/apache2 start
+#!/bin/env bash
+# Run the Docker container with Apache
+
+container_id=$(docker run -d -p 8080:80 holbertonschool/265-0)
+
+# Check if the container is running
+if [ -n "$container_id" ]; then
+    echo "Apache container started. Container ID: $container_id"
+
+    # Enter the container
+    docker exec -it "$container_id" /bin/bash -c '
+        # Install Apache if not already installed
+        if ! command -v apache2 &>/dev/null; then
+            apt-get update
+            apt-get install -y apache2
+        fi
+
+        # Create HTML file with "Hello Holberton"
+        echo "Hello Holberton" > /var/www/html/index.html
+
+        # Restart Apache to apply changes
+        service apache2 restart
+    '
+
+    echo "Setup completed. Access the page using: curl 0:8080"
+else
+    echo "Failed to start Apache container."
+fi
