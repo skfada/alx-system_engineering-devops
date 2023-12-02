@@ -21,8 +21,8 @@ if [ -n "$container_id" ]; then
         # Restart Apache to apply changes
         service apache2 restart
 
-        # Check Apache service status
-        if service apache2 status | grep -q "apache2 is running"; then
+        # Check Apache service status using systemctl
+        if systemctl is-active --quiet apache2; then
             echo "apache2 is running"
         else
             echo "apache2 is not running"
