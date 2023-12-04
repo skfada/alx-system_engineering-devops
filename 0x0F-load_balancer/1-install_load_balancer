@@ -1,26 +1,21 @@
 #!/usr/bin/env bash
 # configures a new HAproxy as a load balancer
 
-# Update package lists and install HAProxy
+# Install HAproxy on a server
 apt-get -y update
-apt-get -y install haproxy
-
-# Check if the haproxy.cfg file exists, if not create it
-if [ ! -f "/etc/haproxy/haproxy.cfg" ]; then
-    touch /etc/haproxy/haproxy.cfg
-fi
+apt-get -y install haproxy=1.6.\*
 
 # Configure haproxy configuration file to distribute requests using a roundrobin algorithm
-cat <<EOF > /etc/haproxy/haproxy.cfg
+echo '
 frontend skfada.tech
-    bind 0:80
-    default_backend web_servers
+        bind 0:80
+        default_backend web_servers
 
 backend web_servers
-    balance roundrobin
-    server 230171-web-01 54.90.50.81
-    server 230171-web-02 100.25.191.152
-EOF
+        balance roundrobin
+        server 230171-web-01 54.90.50.81
+        server 230171-web-02 100.25.191.152
+' >> /etc/haproxy/haproxy.cfg
 
-# Restart HAProxy service
-systemctl restart haproxy
+# Restart HAproxy service
+service haproxy restart
