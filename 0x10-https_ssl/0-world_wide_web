@@ -6,7 +6,7 @@ get_subdomain_info() {
     local subdomain=$2
 
     if [[ -z $subdomain ]]; then
-        subdomains=("www" "lb-01" "web-01" "web-02")
+        subdomains=("www" "230171-lb-01" "230171-web-01" "230171-web-02")
     else
         subdomains=("$subdomain")
     fi
