@@ -10,14 +10,14 @@ defaults
 	timeout client  30s
 	timeout server  30s
 
-frontend skfada-tech-frontend
+frontend skfada.tech
 	bind *:80
-	bind *:443 ssl crt /etc/haproxy/certs/skfada.tech.pem
+	bind *:443 ssl crt /etc/letsencrypt/live/www.skfada.tech/fullchain.pem
 	http-request redirect scheme https unless { ssl_fc }
 	http-request set-header X-Forwarded-Proto https
-	default_backend skfada-tech-backend
+	default_backend web_servers
 
-backend skfada-tech-backend
+backend web_servers
 	balance roundrobin
-	server 230171-web-01 54.90.50.81:80 check
-	server 230171-web-02 100.25.191.152:80 check
+	server 230171-web-01 54.90.50.81 check
+	server 230171-web-02 100.25.191.152 check
