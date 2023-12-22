@@ -1,24 +1,7 @@
 #!/usr/bin/env bash
-# Script that runs nignx webserver as nginx and also configures nginx
-# listen to port 8080
-#!/bin/bash
-
-service nginx stop
-sed -i 's/user\s\+[^;]\+/user nginx;/' /etc/nginx/nginx.conf
-sed -i 's/listen\s\+[^:]\+:80;/listen 8080;/g' /etc/nginx/sites-available/default
-service nginx start
-ps auxff | grep nginx | grep -v grep | grep -q "nginx"
-nginx_user=$?
-
-# Check if Nginx is listening on port 8080
-nc -z 0 8080
-nginx_port=$?
-
-# Output the status
-if [ $nginx_user -eq 0 ]; then
-    echo "Nginx is running as nginx user"
-fi
-
-if [ $nginx_port -eq 0 ]; then
-    echo "Nginx is listening on port 8080"
-fi
+# Fixes the issue with the server
+chmod 644 /etc/nginx/nginx.conf
+sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
+sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
+pkill apache2
+su nginx -s /bin/bash -c 'service nginx restart'
