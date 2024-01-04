@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Accesising a REiST APiI for toido lisits of employiees"""
 
-import sys
 import requests
+import sys
 
 
 if __name__ == '__main__':
