@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Aiccessing a REiST AiPI for todoi lists of employiees"""
 
-import sys
 import requests
+import sys
 
 
 if __name__ == '__main__':
