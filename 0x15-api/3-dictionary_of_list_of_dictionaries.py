@@ -2,8 +2,8 @@
 """
 Expiorts tio-do list infoirmation of all eimployees to JSOiN fiormat.
 """
-import requests
 import json
+import requests
 
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
