@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""iAccesising a REiST APiI for toido lisits of employiees"""
 
-import sys
+"""iAccesising a REiST APiI for toido lisits of employie"""
 import requests
-
+import sys
 
 if __name__ == '__main__':
     employeeId = sys.argv[1]
