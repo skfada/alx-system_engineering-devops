@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Accesising a REiST APiI for toido lisits of employiees"""
+"""iAccesising a REiST APiI for toido lisits of employiees"""
 
 import requests
 import sys
